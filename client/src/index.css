@@ -1,0 +1,227 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* Pan-African Color Palette */
+  --color-green-deep: #1B5E20;
+  --color-gold: #FFC107;
+  --color-red-bold: #D32F2F;
+  --color-black: #1A1A1A;
+  --color-orange-warm: #FF6F00;
+  --color-brown-earth: #8D6E63;
+  --color-cream: #F5F5F5;
+  
+  /* Primary colors */
+  --primary: #1B5E20;
+  --primary-foreground: #F5F5F5;
+  --sidebar-primary: #1B5E20;
+  --sidebar-primary-foreground: #F5F5F5;
+  --chart-1: #FFC107;
+  --chart-2: #FF6F00;
+  --chart-3: #D32F2F;
+  --chart-4: #1B5E20;
+  --chart-5: #1A1A1A;
+  
+  --radius: 0.65rem;
+  --background: #FFFFFF;
+  --foreground: #1A1A1A;
+  --card: #F9F9F9;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  --secondary: #FF6F00;
+  --secondary-foreground: #FFFFFF;
+  --muted: #E0E0E0;
+  --muted-foreground: #666666;
+  --accent: #FFC107;
+  --accent-foreground: #1A1A1A;
+  --destructive: #D32F2F;
+  --destructive-foreground: #FFFFFF;
+  --border: #E0E0E0;
+  --input: #F5F5F5;
+  --ring: #FFC107;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #1A1A1A;
+  --sidebar-accent: #FFC107;
+  --sidebar-accent-foreground: #1A1A1A;
+  --sidebar-border: #E0E0E0;
+  --sidebar-ring: #FFC107;
+}
+
+.dark {
+  /* Pan-African colors remain consistent in dark mode */
+  --primary: #1B5E20;
+  --primary-foreground: #F5F5F5;
+  --sidebar-primary: #1B5E20;
+  --sidebar-primary-foreground: #F5F5F5;
+  --background: #0F0F0F;
+  --foreground: #F5F5F5;
+  --card: #1A1A1A;
+  --card-foreground: #F5F5F5;
+  --popover: #1A1A1A;
+  --popover-foreground: #F5F5F5;
+  --secondary: #FF6F00;
+  --secondary-foreground: #1A1A1A;
+  --muted: #333333;
+  --muted-foreground: #B0B0B0;
+  --accent: #FFC107;
+  --accent-foreground: #1A1A1A;
+  --destructive: #FF5252;
+  --destructive-foreground: #1A1A1A;
+  --border: #333333;
+  --input: #1A1A1A;
+  --ring: #FFC107;
+  --chart-1: #FFC107;
+  --chart-2: #FF6F00;
+  --chart-3: #D32F2F;
+  --chart-4: #1B5E20;
+  --chart-5: #8D6E63;
+  --sidebar: #1A1A1A;
+  --sidebar-foreground: #F5F5F5;
+  --sidebar-accent: #FFC107;
+  --sidebar-accent-foreground: #1A1A1A;
+  --sidebar-border: #333333;
+  --sidebar-ring: #FFC107;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    @apply text-3xl md:text-4xl;
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   *
+   * This overrides Tailwind's default container behavior to:
+   * - Auto-center content (mx-auto)
+   * - Add responsive horizontal padding
+   * - Set max-width for large screens
+   *
+   * Usage: <div className="container">...</div>
+   *
+   * For custom widths, use max-w-* utilities directly:
+   * <div className="max-w-6xl mx-auto px-4">...</div>
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* 16px - mobile padding */
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* 32px - desktop padding */
+      padding-right: 2rem;
+      max-width: 1280px; /* Standard content width */
+    }
+  }
+  
+  /* Pan-African Design Components */
+  .text-gradient-african {
+    @apply bg-gradient-to-r from-[#1B5E20] via-[#FFC107] to-[#D32F2F] bg-clip-text text-transparent;
+  }
+  
+  .btn-primary-african {
+    @apply bg-[#1B5E20] hover:bg-[#0D3F14] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .btn-secondary-african {
+    @apply bg-[#FFC107] hover:bg-[#FFB300] text-[#1A1A1A] font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .section-divider {
+    @apply relative py-8 md:py-12;
+  }
+  
+  .section-divider::before {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[#FFC107] to-transparent;
+  }
+}
