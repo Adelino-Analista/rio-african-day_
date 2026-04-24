@@ -30,11 +30,6 @@ jobs:
       - name: 🚀 Deploy FTP
         run: |
           apt-get update && apt-get install -y lftp
-          lftp -e "
-          set ftp:ssl-allow no
-          set ftp:passive-mode on
-          open ftp://${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_SERVER }}
-          mirror -R --delete dist/ public_html/
-          quit
-          "
+          chmod +x deploy.sh
+          ./deploy.sh "${{ secrets.FTP_SERVER }}" "${{ secrets.FTP_USERNAME }}" "${{ secrets.FTP_PASSWORD }}"
           
