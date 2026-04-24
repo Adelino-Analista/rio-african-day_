@@ -28,12 +28,13 @@ jobs:
         run: pnpm build
 
       - name: 🚀 Deploy FTP
-        uses: milanmk/actions-file-deploy-to-ftp@master
-        with:
-          host: ${{ secrets.FTP_SERVER }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist/
-          remote-dir: public_html/
-          state-name: .ftp-deploy-sync-state.json
+        run: |
+          apt-get update && apt-get install -y lftp
+          lftp -e "
+          set ftp:ssl-allow no
+          set ftp:passive-mode on
+          open ftp://${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_SERVER }}
+          mirror -R --delete dist/ public_html/
+          quit
+          "
           
