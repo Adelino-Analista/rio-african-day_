@@ -10,32 +10,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: 📥 Checkout
         uses: actions/checkout@v3
 
-      - name: Node
+      - name: 🟢 Node
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      - name: Instalar pnpm
+      - name: 📦 Instalar pnpm
         run: npm install -g pnpm
 
-      - name: Instalar deps
+      - name: 📥 Instalar deps
         run: pnpm install --no-frozen-lockfile
 
-      - name: Build Vite
+      - name: 🏗️ Build Vite
         run: pnpm build
 
-      - name: Deploy FTP
+      - name: 🚀 Deploy FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          ftp-server: ${{ secrets.FTP_SERVER }}
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
           local-dir: dist/
           server-dir: public_html/
           dangerous-clean-slate: true
-
-
           
