@@ -27,18 +27,13 @@ jobs:
       - name: 🏗️ Build Vite
         run: pnpm build
 
-      - name: 🧹 Clean up
-        run: |
-          rm -rf node_modules
-          rm -rf .pnpm-store
-
       - name: 🚀 Deploy FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: milanmk/actions-file-deploy-to-ftp@master
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
+          host: ${{ secrets.FTP_SERVER }}
+          user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist
-          server-dir: public_html
-          dangerous-clean-slate: true
+          local-dir: dist/
+          remote-dir: public_html/
+          state-name: .ftp-deploy-sync-state.json
           
