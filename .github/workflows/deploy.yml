@@ -43,8 +43,8 @@ jobs:
           
           echo "🔍 Testing FTP connection to $FTP_SERVER..."
           
-          cat > /tmp/deploy.ftp << 'EOF'
-          set ftp:ssl-allow no
+          cat > /tmp/deploy.ftp << EOF
+          set ftp:ssl-allow yes
           set ftp:passive-mode on
           set net:timeout 30
           set net:max-retries 2
