@@ -35,4 +35,32 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: ./public_html/
+          sudo apt-get update
+          sudo apt-get install -y lftp
+          # Debug: Verify secrets are set
+          if [ -z "$FTP_SERVER" ] || [ -z "$FTP_USERNAME" ] || [ -z "$FTP_PASSWORD" ]; then
+            echo "❌ Error: FTP secrets are not configured"
+            exit 1
+          fi
+          
+          echo "🔍 Testing FTP connection to $FTP_SERVER..."
+          
+          cat > /tmp/deploy.ftp << EOF
+          set ftp:ssl-allow yes
+          set ftp:passive-mode on
+          set net:timeout 30
+          set net:max-retries 2
+          open -u ${FTP_USERNAME},${FTP_PASSWORD} ${FTP_SERVER}
+          cd public_html
+          mirror -R -e --delete dist/ ./
+          quit
+          EOF
+          
+          lftp -f /tmp/deploy.ftp || {
+            echo "❌ FTP deployment failed"
+            exit 1
+          }
+          echo "✅ Deployment completed successfully"
+          
+
           
