@@ -27,7 +27,7 @@ jobs:
       - name: 🏗️ Build Vite
         run: pnpm build
 
-- name: Deploy FTP
+      📤 Deploy FTP
   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
   with:
     server: ${{ secrets.FTP_SERVER }}
